@@ -52,7 +52,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: flowerfbk/ccpptt
+          images: jackunik/ccpptt
           tags: |
             type=raw,value=latest-dev
             type=raw,value=${{ steps.get_version.outputs.version }}
