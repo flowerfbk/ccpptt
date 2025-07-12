@@ -27,6 +27,7 @@ jobs:
           version=$(cat version.txt)
           echo "Current version: v$version-dev"
           echo "::set-output name=version::v$version-dev"
+
       - name: Commit and push version tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,6 +37,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git tag "$version"
           git push https://x-access-token:${GHCR_PAT}@github.com/lanqian528/chat2api.git "$version"
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -56,6 +58,7 @@ jobs:
           tags: |
             type=raw,value=latest-dev
             type=raw,value=${{ steps.get_version.outputs.version }}
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
